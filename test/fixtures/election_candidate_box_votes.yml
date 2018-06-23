@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  election: one
+  candidate: one
+  box: one
+  vote_count: 1
+
+two:
+  election: two
+  candidate: two
+  box: two
+  vote_count: 1

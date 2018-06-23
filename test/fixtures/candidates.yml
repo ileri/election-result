@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  election: one
+  name: MyString
+  photo: MyString
+
+two:
+  election: two
+  name: MyString
+  photo: MyString

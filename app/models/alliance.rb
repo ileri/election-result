@@ -1,0 +1,2 @@
+class Alliance < ApplicationRecord
+end
