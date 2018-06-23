@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180623193236) do
+ActiveRecord::Schema.define(version: 20180623193822) do
 
   create_table "alliances", force: :cascade do |t|
     t.string "name"
@@ -32,6 +32,50 @@ ActiveRecord::Schema.define(version: 20180623193236) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["election_id"], name: "index_candidates_on_election_id"
+  end
+
+  create_table "election_candidate_box_votes", force: :cascade do |t|
+    t.integer "election_id"
+    t.integer "candidate_id"
+    t.integer "box_id"
+    t.integer "vote_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["box_id"], name: "index_election_candidate_box_votes_on_box_id"
+    t.index ["candidate_id"], name: "index_election_candidate_box_votes_on_candidate_id"
+    t.index ["election_id"], name: "index_election_candidate_box_votes_on_election_id"
+  end
+
+  create_table "election_candidate_votes", force: :cascade do |t|
+    t.integer "election_id"
+    t.integer "candidate_id"
+    t.integer "vote_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["candidate_id"], name: "index_election_candidate_votes_on_candidate_id"
+    t.index ["election_id"], name: "index_election_candidate_votes_on_election_id"
+  end
+
+  create_table "election_party_box_votes", force: :cascade do |t|
+    t.integer "election_id"
+    t.integer "party_id"
+    t.integer "box_id"
+    t.integer "vote_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["box_id"], name: "index_election_party_box_votes_on_box_id"
+    t.index ["election_id"], name: "index_election_party_box_votes_on_election_id"
+    t.index ["party_id"], name: "index_election_party_box_votes_on_party_id"
+  end
+
+  create_table "election_party_votes", force: :cascade do |t|
+    t.integer "election_id"
+    t.integer "party_id"
+    t.integer "vote_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["election_id"], name: "index_election_party_votes_on_election_id"
+    t.index ["party_id"], name: "index_election_party_votes_on_party_id"
   end
 
   create_table "elections", force: :cascade do |t|
