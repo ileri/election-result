@@ -18,7 +18,7 @@
           <td><%= image_tag party.logo.icon if party.logo.present? %></td>
           <td><%= party.name %></td>
           <td><%= party.short_name %></td>
-          <td><%= party.alliance.name %></td>
+          <td><%= party.alliance.name if party.alliance.present? %></td>
           <td><%= link_to 'Edit', edit_admin_party_path(party) %></td>
           <td><%= link_to 'Destroy', admin_party_path(party), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
