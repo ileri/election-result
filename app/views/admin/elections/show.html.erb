@@ -15,7 +15,7 @@
     <tbody>
       <% @election.parties.each do |party| %>
         <tr>
-          <td><%= image_tag party.logo.icon if party.logo.present? %></td>
+          <td>-</td>
           <td><%= party.exist? ? party.name : 'PARTİ YOK' %></td>
           <td><%= party.short_name %></td>
           <td><%= party.exists? ? (party.alliance.name if party.alliance.present?) : 'PARTİ YOK' %></td>
