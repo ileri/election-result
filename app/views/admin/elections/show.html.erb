@@ -16,7 +16,7 @@
       <% @election.parties.each do |party| %>
         <tr>
           <td><%= image_tag party.logo.icon if party.logo.present? %></td>
-          <td><%= party.name %></td>
+          <td><%= part.exist? party.name : 'PARTİ YOK' %></td>
           <td><%= party.short_name %></td>
           <td><%= party.alliance.name if party.alliance.present? %></td>
           <td><%= link_to 'Edit', edit_admin_party_path(party) %></td>
