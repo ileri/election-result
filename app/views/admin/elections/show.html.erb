@@ -18,7 +18,7 @@
           <td>-</td>
           <td><%= party.nil? ? 'PARTİ YOK' : party.name%></td>
           <td><%= party.short_name %></td>
-          <td><%= party.exists? ? (party.alliance.name if party.alliance.present?) : 'PARTİ YOK' %></td>
+          <td><%= party.nil? ? 'PARTİ YOK': (party.alliance.name if party.alliance.present?) %></td>
           <td><%= link_to 'Edit', edit_admin_party_path(party) %></td>
           <td><%= link_to 'Destroy', admin_party_path(party), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
