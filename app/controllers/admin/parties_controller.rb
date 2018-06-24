@@ -34,6 +34,7 @@ class Admin::PartiesController < AdminController
         format.html { render :new }
       end
     end
+    Rails.cache.clear
   end
 
   # PATCH/PUT /parties/1
@@ -46,6 +47,7 @@ class Admin::PartiesController < AdminController
         format.html { render :edit }
       end
     end
+    Rails.cache.clear
   end
 
   # DELETE /parties/1
@@ -55,6 +57,7 @@ class Admin::PartiesController < AdminController
     respond_to do |format|
       format.html { redirect_to admin_parties_url, notice: 'Party was successfully destroyed.' }
     end
+    Rails.cache.clear
   end
 
   private

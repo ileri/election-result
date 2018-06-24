@@ -1,2 +1,6 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="container-fluid">
+  <h1 class="text-center">Alaçam Seçim Sonuçları 2018</h1>
+  <% if @elections.count == 2 %>
+    <%= render 'double_elections.html.erb', elections: @election %>
+  <% end %>
+</div>

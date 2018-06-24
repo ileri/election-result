@@ -66,6 +66,7 @@ class Admin::ElectionsController < AdminController
         format.html { render :new }
       end
     end
+    Rails.cache.clear
   end
 
   def update
@@ -76,6 +77,7 @@ class Admin::ElectionsController < AdminController
         format.html { render :edit }
       end
     end
+    Rails.cache.clear
   end
 
   def destroy
@@ -83,6 +85,7 @@ class Admin::ElectionsController < AdminController
     respond_to do |format|
       format.html { redirect_to admin_elections_url, notice: 'Election was successfully destroyed.' }
     end
+    Rails.cache.clear
   end
 
   private

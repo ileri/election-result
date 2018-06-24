@@ -34,6 +34,7 @@ class Admin::CandidatesController < AdminController
         format.html { render :new }
       end
     end
+    Rails.cache.clear
   end
 
   # PATCH/PUT /candidates/1
@@ -46,6 +47,7 @@ class Admin::CandidatesController < AdminController
         format.html { render :edit }
       end
     end
+    Rails.cache.clear
   end
 
   # DELETE /candidates/1
@@ -55,6 +57,7 @@ class Admin::CandidatesController < AdminController
     respond_to do |format|
       format.html { redirect_to admin_candidates_url, notice: 'Candidate was successfully destroyed.' }
     end
+    Rails.cache.clear
   end
 
   private

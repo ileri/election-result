@@ -7,16 +7,19 @@ class Admin::ElectionCandidateBoxVotesController < AdminController
   def create
     @ecbv = ElectionCandidateBoxVotes.new(ecbv_params)
     @election.save
+    Rails.cache.clear
   end
 
   def update
     @ecbv = set_ecbv
     @ecbv.update(ecbv_params)
+    Rails.cache.clear
   end
 
   def destroy
     @ecbv = set_ecbv
     @ecbv.destroy
+    Rails.cache.clear
   end
   
   private

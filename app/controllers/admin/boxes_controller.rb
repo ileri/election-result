@@ -34,6 +34,7 @@ class Admin::BoxesController < AdminController
         format.html { render :new }
       end
     end
+    Rails.cache.clear
   end
 
   # PATCH/PUT /boxes/1
@@ -46,6 +47,7 @@ class Admin::BoxesController < AdminController
         format.html { render :edit }
       end
     end
+    Rails.cache.clear
   end
 
   # DELETE /boxes/1
@@ -55,6 +57,7 @@ class Admin::BoxesController < AdminController
     respond_to do |format|
       format.html { redirect_to admin_boxes_url, notice: 'Box was successfully destroyed.' }
     end
+    Rails.cache.clear
   end
 
   private

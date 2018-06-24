@@ -7,16 +7,19 @@ class Admin::ElectionPartyBoxVotesController < AdminController
   def create
     @epbv = ElectionPartyBoxVote.new(epbv_params)
     @election.save
+    Rails.cache.clear
   end
 
   def update
     @epbv = set_epbv
     @epbv.update(epbv_params)
+    Rails.cache.clear
   end
 
   def destroy
     @epbv = set_epbv
     @epbv.destroy
+    Rails.cache.clear
   end
   
   private

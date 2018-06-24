@@ -1,0 +1,31 @@
+<% if @elections.first.publishable && @elections.last.publishable %>
+  <h2>Seçim Yasakları Devam Etmektedir. Yasaklar Kalktığında Sonuçlar Yayınlanmaya Başlayacaktır.</h2>
+<% else %>
+<div class="row">
+  <% @elections.each_with_index do |election, i| %>
+    <div class="col-6">
+      <h2 class="text-center"><%= election.name %></h2>
+      <%= pie_chart(@vote_counts[i], width: '800px', height: '500px') %>
+      <br>
+      <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th>Sandık No</th>
+            <th>Mahalle Adı</th>
+            <th>Sonuçlar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% Box.all.each do |box| %>
+          <tr>
+            <td><%= box.no %></td>
+            <td><%= box.name %></td>
+            <td><%= simple_format(box_result(election, box)) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>
+<% end %>
