@@ -1,4 +1,4 @@
-<% if @elections.first.publishable && @elections.last.publishable %>
+<% unless @elections.first.publishable && @elections.last.publishable %>
   <h2>Seçim Yasakları Devam Etmektedir. Yasaklar Kalktığında Sonuçlar Yayınlanmaya Başlayacaktır.</h2>
 <% else %>
 <div class="row">
