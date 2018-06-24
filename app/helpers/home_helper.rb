@@ -30,4 +30,9 @@ module HomeHelper
     end
     string
   end
+
+  def box_party_count(election, box, party_short)
+    party = Party.where(short_name: party_short)
+    ElectionPartyBoxVote.where(election: election, party: party, box: box).first.vote_count
+  end
 end
