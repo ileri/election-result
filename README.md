@@ -1,24 +1,7 @@
-# README
+# Election Result System
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Written in Ruby on Rails.
 
-Things you may want to cover:
+To be used in Turkey 2018 June 24 double election first time.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+First version written in 8 hours ( with interrupts )
