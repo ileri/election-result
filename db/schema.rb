@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180623223717) do
+ActiveRecord::Schema.define(version: 20180624143941) do
 
   create_table "alliances", force: :cascade do |t|
     t.string "name"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20180623223717) do
     t.integer "election_id"
     t.integer "candidate_id"
     t.integer "box_id"
-    t.integer "vote_count"
+    t.integer "vote_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["box_id"], name: "index_election_candidate_box_votes_on_box_id"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20180623223717) do
     t.integer "election_id"
     t.integer "party_id"
     t.integer "box_id"
-    t.integer "vote_count"
+    t.integer "vote_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["box_id"], name: "index_election_party_box_votes_on_box_id"
