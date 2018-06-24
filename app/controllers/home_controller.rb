@@ -12,11 +12,19 @@ class HomeController < ApplicationController
     votes = []
     if(election.election_type.option == 'party')
       election.parties.each do |party|
-        votes << [party.name, ElectionPartyBoxVote.where(election: election, party: party).map(&:vote_count).inject(0, :+)]
+        sum = 0
+        ElectionPartyBoxVote.where(election: election, party: party).map(&:vote_count).each do |e|
+          sum += e || 0
+        end
+        votes << [party.name, sum]
       end
     elsif(election.election_type.option == 'candidate')
       election.candidates.each do |candidate|
-        votes << [candidate.name, ElectionCandidateBoxVote.where(election: election, candidate: candidate).map(&:vote_count).inject(0, :+)]
+        sum = 0
+        ElectionCandidateBoxVote.where(election: election, candidate: candidate).map(&:vote_count).each do |e|
+          sum += e || 0
+        end
+        votes << [candidate.name, sum]
       end
     end
     votes
