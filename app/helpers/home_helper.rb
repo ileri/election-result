@@ -34,12 +34,12 @@ module HomeHelper
   def box_party_count(election, box, party_short)
     party = Party.where(short_name: party_short)
     ans = ElectionPartyBoxVote.where(election: election, party: party, box: box).
-    if ans.nil? ? 0  : ans.vote_count
+    ans.nil? ? 0  : ans.vote_count
   end
 
   def box_candidate_count(election, box, candidate_name)
     candidate = Candidate.where(name: candidate_name)
     ans = ElectionCandidateBoxVote.where(election: election, candidate: candidate, box: box).first
-    if ans.nil? ? 0 : ans.vote_count
+    ans.nil? ? 0 : ans.vote_count
   end
 end
