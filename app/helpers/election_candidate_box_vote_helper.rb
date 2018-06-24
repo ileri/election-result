@@ -1,0 +1,2 @@
+module ElectionCandidateBoxVoteHelper
+end

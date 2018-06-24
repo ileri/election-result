@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180623193822) do
+ActiveRecord::Schema.define(version: 20180623223717) do
 
   create_table "alliances", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "election_id"
+    t.index ["election_id"], name: "index_alliances_on_election_id"
   end
 
   create_table "boxes", force: :cascade do |t|
@@ -31,6 +33,7 @@ ActiveRecord::Schema.define(version: 20180623193822) do
     t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "order"
     t.index ["election_id"], name: "index_candidates_on_election_id"
   end
 
@@ -46,16 +49,6 @@ ActiveRecord::Schema.define(version: 20180623193822) do
     t.index ["election_id"], name: "index_election_candidate_box_votes_on_election_id"
   end
 
-  create_table "election_candidate_votes", force: :cascade do |t|
-    t.integer "election_id"
-    t.integer "candidate_id"
-    t.integer "vote_count"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["candidate_id"], name: "index_election_candidate_votes_on_candidate_id"
-    t.index ["election_id"], name: "index_election_candidate_votes_on_election_id"
-  end
-
   create_table "election_party_box_votes", force: :cascade do |t|
     t.integer "election_id"
     t.integer "party_id"
@@ -68,14 +61,11 @@ ActiveRecord::Schema.define(version: 20180623193822) do
     t.index ["party_id"], name: "index_election_party_box_votes_on_party_id"
   end
 
-  create_table "election_party_votes", force: :cascade do |t|
-    t.integer "election_id"
-    t.integer "party_id"
-    t.integer "vote_count"
+  create_table "election_types", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["election_id"], name: "index_election_party_votes_on_election_id"
-    t.index ["party_id"], name: "index_election_party_votes_on_party_id"
+    t.string "option"
   end
 
   create_table "elections", force: :cascade do |t|
@@ -85,6 +75,8 @@ ActiveRecord::Schema.define(version: 20180623193822) do
     t.boolean "publishable"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "election_type_id"
+    t.index ["election_type_id"], name: "index_elections_on_election_type_id"
   end
 
   create_table "parties", force: :cascade do |t|
@@ -93,7 +85,11 @@ ActiveRecord::Schema.define(version: 20180623193822) do
     t.integer "alliance_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "short_name"
+    t.integer "order"
+    t.integer "election_id"
     t.index ["alliance_id"], name: "index_parties_on_alliance_id"
+    t.index ["election_id"], name: "index_parties_on_election_id"
   end
 
   create_table "users", force: :cascade do |t|

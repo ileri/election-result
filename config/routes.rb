@@ -10,7 +10,16 @@ Rails.application.routes.draw do
   authenticate :user do
     scope :admin, module: :admin, as:'admin' do
       get '/', to: 'home#index',  as:"root"
-
+      resources :candidates
+      resources :parties
+      resources :alliances
+      resources :boxes
+      resources :elections do
+        get 'add_votes'
+        post 'save_votes'
+        get 'delete_votes'
+      end
+      resources :election_types
     end
   end
 
