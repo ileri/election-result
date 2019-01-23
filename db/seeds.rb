@@ -10,3 +10,8 @@ User.create(
   password: '123456',
   password_confirmation: '123456'
 )
+
+ElectionType.create(name: 'Belediye Başkanlığı Seçimi', option: 'candidate')
+ElectionType.create(name: 'Muhtarlık Seçimi', option: 'candidate')
+ElectionType.create(name: 'Genel Seçim', option: 'party')
+ElectionType.create(name: 'Cumhurbaşkanlığı Seçimi', option: 'candidate')
