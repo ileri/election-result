@@ -29,6 +29,8 @@ gem 'rmagick'
 gem 'carrierwave'
 gem "chartkick"
 gem "nokogiri", ">= 1.8.5"
+gem "font-awesome-rails"
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
