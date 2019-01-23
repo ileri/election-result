@@ -1,0 +1,25 @@
+<nav class="navbar navbar-dark navbar-expand-sm sticky-top bg-dark">
+    <div class="navbar-header">
+      <%= link_to admin_root_path, class: 'navbar-brand' do %>
+        <font size="4"><strong><%= 'Election Result Admin System' %></strong></font> 
+      <% end %>
+    </div>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <%= link_to 'Election Types', admin_election_types_path, class: 'nav-link' %>
+      <%= link_to 'Elections', admin_elections_path, class: 'nav-link' %>
+      <%= link_to 'Active Elections', admin_elections_path, class: 'nav-link' %>
+      <%= link_to 'Boxes' , admin_boxes_path, class: 'nav-link' %>
+    <!-- Right -->
+    <ul class="nav navbar ml-auto">
+      <li><%= link_to 'Show Home Page', root_path, target: '_blank', class: 'btn btn-success' %></li>
+      <li>-</li>
+      <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete, class:'btn btn-danger' %></li>
+    </ul>
+  </div>
+</nav>

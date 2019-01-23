@@ -1,86 +1,81 @@
-<h1>Election Result Admin System</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-4">
+      <center><h2>Election Types</h2></center>
+      <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% ElectionType.all.each do |election_type| %>
+          <tr>
+            <td><%= election_type.name %></td>
+            <td><%= link_to 'Edit', edit_admin_election_type_path(election_type) %></td>
+            <td><%= link_to 'Destroy', admin_election_type_path(election_type), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= link_to 'New Election Type', new_admin_election_type_path %>      
+    </div>
+    <div class="col-4">
+      <center><h2>Active Elections</h2></center>
+      <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Year</th>
+          <th>Active</th>
+          <th>Publishable</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% @active_elections.each do |election| %>
+          <tr>
+            <td><%= link_to election.name, admin_election_path(election) %></td>
+            <td><%= election.year %></td>
+            <td><%= election.active %></td>
+            <td><%= election.publishable %></td>
+            <td><%= link_to 'Edit', edit_admin_election_path(election) %></td>
+            <td><%= link_to 'Destroy', admin_election_path(election), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      
+      <%= link_to 'New Election', new_admin_election_path %>
+    </div>
+    <div class="col-4">
+    <center><h2>Boxes</h2></center>
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          <% @boxes.each do |box| %>
+            <tr>
+              <td><%= box.no %></td>
+              <td><%= box.name %></td>
+              <td><%= link_to 'Show', box %></td>
+              <td><%= link_to 'Edit', edit_admin_box_path(box) %></td>
+              <td><%= link_to 'Destroy', admin_box_path(box), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= link_to 'New Box', new_admin_box_path %>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Show Homepage', root_path, target: '_blank' %>
-</br>
-<h2>Active Elections</h2>
-<table>
-<thead>
-  <tr>
-    <th>Name</th>
-    <th>Year</th>
-    <th>Active</th>
-    <th>Publishable</th>
-    <th colspan="2"></th>
-  </tr>
-</thead>
-
-<tbody>
-  <% @active_elections.each do |election| %>
-    <tr>
-      <td><%= link_to election.name, admin_election_path(election) %></td>
-      <td><%= election.year %></td>
-      <td><%= election.active %></td>
-      <td><%= election.publishable %></td>
-      <td><%= link_to 'Edit', edit_admin_election_path(election) %></td>
-      <td><%= link_to 'Destroy', admin_election_path(election), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-
-<%= link_to 'New Election', new_admin_election_path %>
-
-<br/>
-<br/>
-
-<h2>Election Types</h2>
-<table>
-<thead>
-  <tr>
-    <th>Name</th>
-    <th colspan="3"></th>
-  </tr>
-</thead>
-
-<tbody>
-  <% ElectionType.all.each do |election_type| %>
-    <tr>
-      <td><%= election_type.name %></td>
-      <td><%= link_to 'Edit', edit_admin_election_type_path(election_type) %></td>
-      <td><%= link_to 'Destroy', admin_election_type_path(election_type), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-<%= link_to 'New Election Type', new_admin_election_type_path %>
-
-<br/>
-<br/>
-
-<h2>Boxes</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @boxes.each do |box| %>
-      <tr>
-        <td><%= box.no %></td>
-        <td><%= box.name %></td>
-        <td><%= link_to 'Show', box %></td>
-        <td><%= link_to 'Edit', edit_admin_box_path(box) %></td>
-        <td><%= link_to 'Destroy', admin_box_path(box), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Box', new_admin_box_path %>
