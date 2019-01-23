@@ -1,111 +1,85 @@
 .container-fluid
   .row
     .col-4
-      center
-        h2
-          | Election Types
-      table
+      center 
+        h2 Election Types
+        = link_to 'New Election Type', new_admin_election_type_path, class: 'btn btn-success btn-lg btn-block font-weight-bold'
+      table class="table table-striped table-hover"
         thead
           tr
-            th
-              | Name
+            th Name
             th[colspan="3"]
         tbody
           - ElectionType.all.each do |election_type|
             tr
-              td
-                = election_type.name
-              td
-                = link_to 'Edit', edit_admin_election_type_path(election_type)
-              td
-                = link_to 'Destroy', admin_election_type_path(election_type), method: :delete, data: { confirm: 'Are you sure?' }
-      = link_to 'New Election Type', new_admin_election_type_path
+              td = election_type.name
+              td = link_to 'Edit', edit_admin_election_type_path(election_type)
+              td = link_to 'Destroy', admin_election_type_path(election_type), method: :delete, data: { confirm: 'Are you sure?' }
     .col-4
       center
-        h2
-          | Active Elections
-      table
+        h2 Elections
+        - unless ElectionType.exists?
+          font color="red"
+            b= link_to 'Firstly, must add an Election Type', new_admin_election_type_path, style: 'color: red;'
+        - else
+            = link_to 'New Election', new_admin_election_path, class: 'btn btn-success btn-lg btn-block font-weight-bold'
+        h3 Active Elections
+      table class="table table-striped table-hover"
         thead
           tr
-            th
-              | Name
-            th
-              | Year
-            th
-              | Active
-            th
-              | Publishable
+            th Name
+            th Year
+            th Active
+            th Publishable
             th[colspan="2"]
         tbody
           - @active_elections.each do |election|
             tr
-              td
-                = link_to election.name, admin_election_path(election)
-              td
-                = election.year
-              td
-                = election.active
-              td
-                = election.publishable
-              td
-                = link_to 'Edit', edit_admin_election_path(election)
-              td
-                = link_to 'Destroy', admin_election_path(election), method: :delete, data: { confirm: 'Are you sure?' }
+              td = link_to election.name, admin_election_path(election)
+              td = election.year
+              td = fa_icon (election.active ?  'check' : 'times')
+              td = fa_icon (election.publishable ?  'check' : 'times')
+              td = link_to edit_admin_election_path(election) do
+                span class="badge badge-warning"
+                  = fa_icon 'edit'
+              td = link_to admin_election_path(election), method: :delete, data: { confirm: 'Are you sure?' } do
+                span class="badge badge-danger"
+                  = fa_icon 'trash'
       hr
       center
-        h2
-          | Inactive Elections
-      table
+        h3 Inactive Elections
+      table class="table table-striped table-hover"
         thead
           tr
-            th
-              | Name
-            th
-              | Year
-            th
-              | Active
-            th
-              | Publishable
+            th Name
+            th Year
+            th Active
+            th Publishable
             th[colspan="2"]
         tbody
           - @inactive_elections.each do |election|
             tr
-              td
-                = link_to election.name, admin_election_path(election)
-              td
-                = election.year
-              td
-                = election.active
-              td
-                = election.publishable
-              td
-                = link_to 'Edit', edit_admin_election_path(election)
-              td
-                = link_to 'Destroy', admin_election_path(election), method: :delete, data: { confirm: 'Are you sure?' }
-      = link_to 'New Election', new_admin_election_path
+              td = link_to election.name, admin_election_path(election)
+              td = election.year
+              td = fa_icon (election.active ?  'check' : 'times')
+              td = fa_icon (election.publishable ?  'check' : 'times')
+              td = link_to 'Edit', edit_admin_election_path(election)
+              td = link_to 'Destroy', admin_election_path(election), method: :delete, data: { confirm: 'Are you sure?' }
     .col-4
       center
-        h2
-          | Boxes
-      table
+        h2 Boxes
+      = link_to 'New Box', new_admin_box_path, class: 'btn btn-success btn-lg btn-block font-weight-bold'
+      table class="table table-striped table-hover"
         thead
           tr
-            th
-              | No
-            th
-              | Name
+            th No
+            th Name
             th[colspan="3"]
         tbody
           - @boxes.each do |box|
             tr
-              td
-                = box.no
-              td
-                = box.name
-              td
-                = link_to 'Show', box
-              td
-                = link_to 'Edit', edit_admin_box_path(box)
-              td
-                = link_to 'Destroy', admin_box_path(box), method: :delete, data: { confirm: 'Are you sure?' }
-      = link_to 'New Box', new_admin_box_path
+              td = box.no
+              td = box.name
+              td = link_to 'Show', box
+              td = link_to 'Edit', edit_admin_box_path(box)
+              td = link_to 'Destroy', admin_box_path(box), method: :delete, data: { confirm: 'Are you sure?' }

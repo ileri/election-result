@@ -1,0 +1,26 @@
+h1 Elections
+= link_to 'New Election', new_admin_election_path, class: 'btn btn-success btn-lg btn-block font-weight-bold'
+table class="table table-striped table-hover"
+  thead
+    tr
+      th Name
+      th Year
+      th Active
+      th Publishable
+      th colspan="3" 
+  tbody
+    - @elections.each do |election|
+      tr
+        td= election.name
+        td= election.year
+        td = fa_icon (election.active ?  'check' : 'times')
+        td = fa_icon (election.publishable ?  'check' : 'times')
+        td= link_to admin_election_path(election) do
+          span class="badge badge-primary"
+            = fa_icon 'eye'
+        td= link_to edit_admin_election_path(election) do 
+          span class="badge badge-warning"
+            = fa_icon 'edit'
+        td= link_to admin_election_path(election), method: :delete, data: {confirm: 'Are you sure?'} do
+          span class="badge badge-danger"
+            = fa_icon 'trash'

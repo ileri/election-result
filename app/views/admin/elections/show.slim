@@ -1,0 +1,57 @@
+h1= @election.name
+- if @election.election_type.option == 'party'
+  table
+    thead
+      tr
+        th Logo
+        th Name
+        th Short Name
+        th Alliance
+        th colspan="2" 
+    tbody
+      - @election.parties.each do |party|
+        tr
+          td -
+          td= party.nil? ? 'PARTİ YOK' : party.name
+          td= party.short_name
+          td= party.nil? ? 'PARTİ YOK': (party.alliance.name if party.alliance.present?)
+          td= link_to 'Edit', edit_admin_party_path(party)
+          td= link_to 'Destroy', admin_party_path(party), method: :delete, data: {confirm: 'Are you sure?'} 
+  br/
+  br/
+  = link_to 'Add party', new_admin_party_path
+  br/
+  br/
+  = link_to 'Add Votes' , admin_election_add_votes_path(@election)
+  br/
+  - @boxes.each do |box|
+    - next if box_votes(box).size < 1
+    = box.name
+    - box_votes(box).each do |vote|
+      = vote.party.name
+      | \: #{vote.vote_count}  ||
+    = link_to 'Delete', admin_election_delete_votes_path(@election, box)
+    br/
+  br/
+- elsif @election.election_type.option == 'candidate'
+  table
+    thead
+      tr
+        th Name
+        th Photo
+        th colspan="3" 
+    tbody
+      - @election.candidates.each do |candidate|
+        tr
+          td= candidate.name
+          td= image_tag candidate.photo.icon
+          td= link_to 'Show', candidate
+          td= link_to 'Edit', edit_admin_candidate_path(candidate)
+          td= link_to 'Destroy', admin_candidate_path(candidate), method: :delete, data: {confirm: 'Are you sure?'}
+  = link_to 'Add candidate', new_admin_candidate_path
+  br/
+  br/
+  = link_to 'Add Votes' , admin_election_add_votes_path(@election)
+br/
+br/
+= link_to 'Homepage', admin_root_path
