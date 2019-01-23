@@ -1,0 +1,111 @@
+.container-fluid
+  .row
+    .col-4
+      center
+        h2
+          | Election Types
+      table
+        thead
+          tr
+            th
+              | Name
+            th[colspan="3"]
+        tbody
+          - ElectionType.all.each do |election_type|
+            tr
+              td
+                = election_type.name
+              td
+                = link_to 'Edit', edit_admin_election_type_path(election_type)
+              td
+                = link_to 'Destroy', admin_election_type_path(election_type), method: :delete, data: { confirm: 'Are you sure?' }
+      = link_to 'New Election Type', new_admin_election_type_path
+    .col-4
+      center
+        h2
+          | Active Elections
+      table
+        thead
+          tr
+            th
+              | Name
+            th
+              | Year
+            th
+              | Active
+            th
+              | Publishable
+            th[colspan="2"]
+        tbody
+          - @active_elections.each do |election|
+            tr
+              td
+                = link_to election.name, admin_election_path(election)
+              td
+                = election.year
+              td
+                = election.active
+              td
+                = election.publishable
+              td
+                = link_to 'Edit', edit_admin_election_path(election)
+              td
+                = link_to 'Destroy', admin_election_path(election), method: :delete, data: { confirm: 'Are you sure?' }
+      hr
+      center
+        h2
+          | Inactive Elections
+      table
+        thead
+          tr
+            th
+              | Name
+            th
+              | Year
+            th
+              | Active
+            th
+              | Publishable
+            th[colspan="2"]
+        tbody
+          - @inactive_elections.each do |election|
+            tr
+              td
+                = link_to election.name, admin_election_path(election)
+              td
+                = election.year
+              td
+                = election.active
+              td
+                = election.publishable
+              td
+                = link_to 'Edit', edit_admin_election_path(election)
+              td
+                = link_to 'Destroy', admin_election_path(election), method: :delete, data: { confirm: 'Are you sure?' }
+      = link_to 'New Election', new_admin_election_path
+    .col-4
+      center
+        h2
+          | Boxes
+      table
+        thead
+          tr
+            th
+              | No
+            th
+              | Name
+            th[colspan="3"]
+        tbody
+          - @boxes.each do |box|
+            tr
+              td
+                = box.no
+              td
+                = box.name
+              td
+                = link_to 'Show', box
+              td
+                = link_to 'Edit', edit_admin_box_path(box)
+              td
+                = link_to 'Destroy', admin_box_path(box), method: :delete, data: { confirm: 'Are you sure?' }
+      = link_to 'New Box', new_admin_box_path
