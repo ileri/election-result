@@ -2,6 +2,7 @@ class Admin::HomeController < AdminController
   before_action :get_active_inactive_elections
   def index
     @boxes = Box.all
+    @election_types = ElectionType.all
   end
 
   private

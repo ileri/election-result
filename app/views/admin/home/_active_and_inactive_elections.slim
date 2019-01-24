@@ -1,0 +1,13 @@
+center
+  h2 Elections
+  - unless ElectionType.exists?
+    font color="red"
+      b= link_to 'Firstly, must add an Election Type', new_admin_election_type_path, style: 'color: red;'
+  - else
+      = link_to 'New Election', new_admin_election_path, class: 'btn btn-success btn-lg btn-block font-weight-bold'
+  h3 Active Elections
+  = render 'elections_list', elections: active_elections
+hr
+center
+  h3 Inactive Elections
+  = render 'elections_list', elections: inactive_elections

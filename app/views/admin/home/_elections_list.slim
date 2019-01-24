@@ -1,0 +1,21 @@
+table class="table table-striped table-hover table-responsive-sm"
+  thead
+    tr
+      th Name
+      th Year
+      th Active
+      th Publishable
+      th[colspan="2"]
+  tbody
+    - elections.each do |election|
+      tr
+        td = link_to election.name, admin_election_path(election)
+        td = election.year
+        td = fa_icon (election.active ?  'check' : 'times'), style: "color: #{election.active ? 'green' : 'red'};"
+        td = fa_icon (election.publishable ?  'check' : 'times'), style: "color: #{election.publishable ? 'green' : 'red'};"
+        td = link_to edit_admin_election_path(election) do
+          span class="badge badge-warning"
+            = fa_icon 'edit'
+        td = link_to admin_election_path(election), method: :delete, data: { confirm: 'Are you sure?' } do
+          span class="badge badge-danger"
+            = fa_icon 'trash'

@@ -1,4 +1,4 @@
 .container-fluid
   h1.text-center Alaçam Seçim Sonuçları 2018
   - if @elections.count == 2
-    = render 'double_elections.html.erb', elections: @election
+    = render 'double_elections', elections: @election
