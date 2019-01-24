@@ -1,6 +1,6 @@
 .container-fluid
   .row
-    .col-4
+    .col-12.col-sm-12.col-md-6.col-lg-4.col-xl-4
       center 
         h2 Election Types
         = link_to 'New Election Type', new_admin_election_type_path, class: 'btn btn-success btn-lg btn-block font-weight-bold'
@@ -13,9 +13,13 @@
           - ElectionType.all.each do |election_type|
             tr
               td = election_type.name
-              td = link_to 'Edit', edit_admin_election_type_path(election_type)
-              td = link_to 'Destroy', admin_election_type_path(election_type), method: :delete, data: { confirm: 'Are you sure?' }
-    .col-4
+              td = link_to edit_admin_election_type_path(election_type)do
+                span class="badge badge-warning"
+                  = fa_icon 'edit'
+              td = link_to admin_election_type_path(election_type), method: :delete, data: { confirm: 'Are you sure?' } do
+                span class="badge badge-danger"
+                  = fa_icon 'trash'
+    .col-12.col-sm-12.col-md-6.col-lg-4.col-xl-4
       center
         h2 Elections
         - unless ElectionType.exists?
@@ -63,9 +67,13 @@
               td = election.year
               td = fa_icon (election.active ?  'check' : 'times')
               td = fa_icon (election.publishable ?  'check' : 'times')
-              td = link_to 'Edit', edit_admin_election_path(election)
-              td = link_to 'Destroy', admin_election_path(election), method: :delete, data: { confirm: 'Are you sure?' }
-    .col-4
+              td = link_to edit_admin_election_path(election) do
+                span class="badge badge-warning"
+                  = fa_icon 'edit'
+              td = link_to 'Destroy', admin_election_path(election), method: :delete, data: { confirm: 'Are you sure?' } do
+                span class="badge badge-danger"
+                  = fa_icon 'trash'
+    .col-12.col-sm-12.col-md-6.col-lg-4.col-xl-4
       center
         h2 Boxes
       = link_to 'New Box', new_admin_box_path, class: 'btn btn-success btn-lg btn-block font-weight-bold'
@@ -80,6 +88,12 @@
             tr
               td = box.no
               td = box.name
-              td = link_to 'Show', box
-              td = link_to 'Edit', edit_admin_box_path(box)
-              td = link_to 'Destroy', admin_box_path(box), method: :delete, data: { confirm: 'Are you sure?' }
+              td = link_to box do
+                span class="badge badge-primary"
+                  = fa_icon 'eye'
+              td = link_to edit_admin_box_path(box) do
+                span class="badge badge-warning"
+                  = fa_icon 'edit'
+              td = link_to admin_box_path(box), method: :delete, data: { confirm: 'Are you sure?' } do
+                span class="badge badge-danger"
+                  = fa_icon 'trash'

@@ -1,0 +1,8 @@
+p
+  strong No:
+  = @box.no
+p
+  strong Name:
+  = @box.name
+= link_to 'Edit', edit_box_path(@box)
+= link_to 'Back', boxes_path

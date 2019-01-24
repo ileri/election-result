@@ -1,0 +1,21 @@
+h1 Parties
+table
+  thead
+    tr
+      th Name
+      th Short Name
+      th Logo
+      th Alliance
+      th colspan="3" 
+  tbody
+    - @parties.each do |party|
+      tr
+        td= party.name
+        td= party.short_name
+        td= image_tag party.logo.icon if party.logo.present?
+        td= party.alliance.name if party.alliance.present?
+        td= link_to 'Show', party
+        td= link_to 'Edit', edit_admin_party_path(party)
+        td= link_to 'Destroy', admin_party_path(party), method: :delete, data: {confirm: 'Are you sure?' }
+br/
+= link_to 'New Party', new_admin_party_path

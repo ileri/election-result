@@ -1,0 +1,11 @@
+p
+  strong Election:
+  = @candidate.election
+p
+  strong Name:
+  = @candidate.name
+p
+  strong Photo:
+  = @candidate.photo
+= link_to 'Edit', edit_candidate_path(@candidate)
+= link_to 'Back', candidates_path

@@ -1,0 +1,21 @@
+- unless @elections.first.publishable && @elections.last.publishable
+  h2 Seçim Yasakları Devam Etmektedir. Yasaklar Kalktığında Sonuçlar Yayınlanmaya Başlayacaktır.
+- else
+  .row
+    - @elections.each_with_index do |election, i|
+      .col-6
+        h2.text-center= election.name
+        = pie_chart(@vote_counts[i], width: '800px', height: '500px')
+        br/
+        table.table.table-dark.table-striped
+          thead
+            tr
+              th Sandık No
+              th Mahalle Adı
+              th Sonuçlar
+          tbody
+            - Box.all.each do |box|
+              tr
+                td= box.no
+                td= box.name
+                td= simple_format(box_result(election, box))

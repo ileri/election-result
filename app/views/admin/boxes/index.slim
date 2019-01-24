@@ -1,0 +1,19 @@
+h1 Boxes
+table
+  thead
+    tr
+      th No
+      th Name
+      th colspan="3" 
+  tbody
+    - @boxes.each do |box|
+      tr
+        td= box.no
+        td= box.name
+        td= link_to 'Show', box
+        td= link_to 'Edit', edit_admin_box_path(box)
+        td= link_to 'Destroy', admin_box_path(box), method: :delete, data: {confirm: 'Are you sure?' }
+br/
+= link_to 'New Box', new_admin_box_path
+br/
+= link_to 'Homepage', admin_root_path

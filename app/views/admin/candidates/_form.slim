@@ -1,0 +1,14 @@
+= simple_form_for @candidate, url: locals[:path],  \
+  wrapper: :horizontal_form,                       \
+  wrapper_mappings: {                              \
+  check_boxes: :horizontal_radio_and_checkboxes,   \
+  radio_buttons: :horizontal_radio_and_checkboxes, \
+  file: :horizontal_file,                          \
+  boolean: :horizontal_boolean                     \
+  } do |f|
+  = f.error_notification
+  = f.association :election
+  = f.input :name
+  = f.input :photo
+  = f.input :order
+  = f.button :submit
